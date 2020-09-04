@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Order {
     private Long id;
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
     private Long userId;
 
-    public Order(List<Product> products, Long userId) {
-        this.products = products;
+    public Order(Long userId) {
+        products = new ArrayList<>();
         this.userId = userId;
     }
 

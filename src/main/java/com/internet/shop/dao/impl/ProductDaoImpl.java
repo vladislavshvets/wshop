@@ -1,4 +1,4 @@
-package com.internet.shop.dao;
+package com.internet.shop.dao.impl;
 
 import com.internet.shop.db.Storage;
 import com.internet.shop.lib.Dao;

@@ -5,8 +5,13 @@ import java.util.List;
 
 public class ShoppingCart {
     private Long id;
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
     private Long userId;
+
+    public ShoppingCart(Long userId) {
+        products = new ArrayList<>();
+        this.userId = userId;
+    }
 
     public Long getId() {
         return id;

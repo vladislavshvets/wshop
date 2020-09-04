@@ -1,6 +1,6 @@
 package com.internet.shop.service;
 
-import com.internet.shop.dao.ProductDao;
+import com.internet.shop.dao.impl.ProductDao;
 import com.internet.shop.lib.Inject;
 import com.internet.shop.lib.Service;
 import com.internet.shop.model.Product;
