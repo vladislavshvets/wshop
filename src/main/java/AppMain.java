@@ -1,7 +1,7 @@
 import com.internet.shop.lib.Injector;
 import com.internet.shop.model.Product;
 import com.internet.shop.service.ProductService;
-import com.internet.shop.service.ProductServiceImpl;
+import com.internet.shop.service.impl.ProductServiceImpl;
 import java.math.BigDecimal;
 
 public class AppMain {
