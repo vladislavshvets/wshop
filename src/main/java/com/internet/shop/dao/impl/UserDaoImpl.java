@@ -2,11 +2,12 @@ package com.internet.shop.dao.impl;
 
 import com.internet.shop.dao.UserDao;
 import com.internet.shop.db.Storage;
+import com.internet.shop.lib.Dao;
 import com.internet.shop.model.User;
-
 import java.util.List;
 import java.util.Optional;
 
+@Dao
 public class UserDaoImpl implements UserDao {
 
     @Override
@@ -33,7 +34,8 @@ public class UserDaoImpl implements UserDao {
                 users.set(i, user);
             }
         }
-        throw new IllegalArgumentException("The user [" + user.getId() + "] isn't exist in storage!");
+        throw new IllegalArgumentException("The user [" + user.getId()
+                + "] isn't exist in storage!");
     }
 
     @Override

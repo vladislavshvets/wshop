@@ -2,10 +2,12 @@ package com.internet.shop.service.impl;
 
 import com.internet.shop.dao.ShoppingCartDao;
 import com.internet.shop.lib.Inject;
+import com.internet.shop.lib.Service;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.ShoppingCartService;
 
+@Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private ShoppingCartDao shoppingCartDao;
@@ -17,18 +19,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        return null;
+        shoppingCart.getProducts().add(product);
+        return shoppingCartDao.update(shoppingCart);
     }
 
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
         return shoppingCart.getProducts()
-                .removeIf(shCart ->shCart.getId().equals(product.getId()));
+                .removeIf(shCart -> shCart.getId().equals(product.getId()));
     }
 
     @Override
     public void clear(ShoppingCart shoppingCart) {
-
+        shoppingCart.getProducts().clear();
+        shoppingCartDao.update(shoppingCart);
     }
 
     @Override
@@ -38,6 +42,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public boolean delete(ShoppingCart shoppingCart) {
-        return false;
+        return shoppingCartDao.deleteById(shoppingCart.getId());
     }
 }

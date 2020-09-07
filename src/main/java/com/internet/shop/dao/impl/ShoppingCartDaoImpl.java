@@ -2,12 +2,12 @@ package com.internet.shop.dao.impl;
 
 import com.internet.shop.dao.ShoppingCartDao;
 import com.internet.shop.db.Storage;
-import com.internet.shop.model.Product;
+import com.internet.shop.lib.Dao;
 import com.internet.shop.model.ShoppingCart;
-
 import java.util.List;
 import java.util.Optional;
 
+@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
@@ -25,12 +25,14 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
                 return shoppingCart;
             }
         }
-        throw new IllegalArgumentException("The shoppingCart [" + shoppingCart.getId() + "] isn't exist in storage!");
+        throw new IllegalArgumentException("The shoppingCart [" + shoppingCart.getId()
+                + "] isn't exist in storage!");
     }
 
     @Override
     public Optional<ShoppingCart> getById(Long id) {
-        return getAll().stream().filter(shoppingCart -> shoppingCart.getId().equals(id)).findFirst();
+        return getAll().stream()
+                .filter(shoppingCart -> shoppingCart.getId().equals(id)).findFirst();
     }
 
     @Override
