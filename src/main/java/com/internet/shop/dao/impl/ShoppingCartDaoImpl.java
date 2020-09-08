@@ -43,6 +43,6 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
     public boolean deleteById(Long id) {
-        return getAll().removeIf(shoppingCart -> shoppingCart.getId().equals(id));
+        return getAll().removeIf(shoppingCart -> shoppingCart.getUserId().equals(id));
     }
 }
