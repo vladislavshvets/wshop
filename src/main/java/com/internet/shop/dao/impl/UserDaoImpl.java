@@ -18,7 +18,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> getById(Long id) {
-        return getAll().stream().filter(user -> user.getId().equals(id)).findFirst();
+        return getAll().stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst();
     }
 
     @Override
@@ -35,7 +37,7 @@ public class UserDaoImpl implements UserDao {
             }
         }
         throw new IllegalArgumentException("The user [" + user.getId()
-                + "] isn't exist in storage!");
+                + "] doesn't exist in storage!");
     }
 
     @Override

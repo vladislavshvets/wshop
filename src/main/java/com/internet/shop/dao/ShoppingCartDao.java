@@ -9,7 +9,7 @@ public interface ShoppingCartDao {
 
     ShoppingCart update(ShoppingCart shoppingCart);
 
-    Optional<ShoppingCart> getById(Long id);
+    Optional<ShoppingCart> getByUserId(Long id);
 
     List<ShoppingCart> getAll();
 

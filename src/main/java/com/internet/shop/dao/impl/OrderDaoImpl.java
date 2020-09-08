@@ -27,12 +27,13 @@ public class OrderDaoImpl implements OrderDao {
             }
         }
         throw new IllegalArgumentException("The order [" + order.getId()
-                + "] isn't exist in storage!");
+                + "] doesn't exist in storage!");
     }
 
     @Override
     public Optional<Order> getById(Long id) {
-        return getAll().stream().filter(order -> order.getId().equals(id)).findFirst();
+        return getAll().stream().filter(order -> order.getId().equals(id))
+                .findFirst();
     }
 
     @Override

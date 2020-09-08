@@ -26,13 +26,14 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             }
         }
         throw new IllegalArgumentException("The shoppingCart [" + shoppingCart.getId()
-                + "] isn't exist in storage!");
+                + "] doesn't exist in storage!");
     }
 
     @Override
-    public Optional<ShoppingCart> getById(Long id) {
+    public Optional<ShoppingCart> getByUserId(Long id) {
         return getAll().stream()
-                .filter(shoppingCart -> shoppingCart.getId().equals(id)).findFirst();
+                .filter(shoppingCart -> shoppingCart.getId().equals(id))
+                .findFirst();
     }
 
     @Override
