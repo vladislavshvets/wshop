@@ -1,3 +1,5 @@
+package com.internet.shop;
+
 import com.internet.shop.lib.Injector;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
