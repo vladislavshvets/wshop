@@ -6,6 +6,12 @@ public class User {
     private String login;
     private String password;
 
+    public User(String name, String login, String password) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
@@ -36,5 +42,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name='" + name + '\''
+                + ", login='" + login + '\'' + '}';
     }
 }

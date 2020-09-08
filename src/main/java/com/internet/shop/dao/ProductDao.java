@@ -1,4 +1,4 @@
-package com.internet.shop.dao.impl;
+package com.internet.shop.dao;
 
 import com.internet.shop.model.Product;
 import java.util.List;
