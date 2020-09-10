@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class Injector {
     private static final Map<String, Injector> injectors = new HashMap<>();
-    private static Map<Class, Object> instanceOfClasses = new HashMap<>();
-    private static List<Class> classes = new ArrayList<>();
+    private Map<Class, Object> instanceOfClasses = new HashMap<>();
+    private List<Class> classes = new ArrayList<>();
 
     private Injector(String mainPackageName) {
         try {
@@ -34,7 +34,7 @@ public class Injector {
         return injector;
     }
 
-    public static Object getInstance(Class certainInterface) {
+    public Object getInstance(Class certainInterface) {
         Object newInstanceOfClass = null;
         Class clazz = findClassExtendingInterface(certainInterface);
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -51,10 +51,11 @@ public class Injector {
                         + clazz.getName() + " hasn't annotation Inject");
             }
         }
+
         return newInstanceOfClass;
     }
 
-    private static Class<?> findClassExtendingInterface(Class<?> certainInterface) {
+    private Class<?> findClassExtendingInterface(Class<?> certainInterface) {
         Class<?> correctClass = null;
         for (Class<?> clazz : classes) {
             Class<?>[] interfaces = clazz.getInterfaces();
@@ -78,7 +79,7 @@ public class Injector {
                 + certainInterface.getName() + " interface with valid annotation (Dao or Service)");
     }
 
-    private static Object getNewInstance(Class certainClass) {
+    private Object getNewInstance(Class certainClass) {
         if (instanceOfClasses.containsKey(certainClass)) {
             return instanceOfClasses.get(certainClass);
         }

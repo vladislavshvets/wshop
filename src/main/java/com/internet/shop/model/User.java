@@ -1,7 +1,7 @@
 package com.internet.shop.model;
 
 public class User {
-    private Long id;
+    private Long userId;
     private String name;
     private String login;
     private String password;
@@ -12,12 +12,12 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -46,7 +46,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name='" + name + '\''
+        return "User{" + "id=" + userId + ", name='" + name + '\''
                 + ", login='" + login + '\'' + '}';
     }
 }
