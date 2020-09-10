@@ -23,11 +23,9 @@ public class AddToShoppingCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long productId = Long.valueOf(req.getParameter("id"));
-
         Product product = productService.getById(productId);
         ShoppingCart cart = shoppingCartService.getByUserId(USER_ID);
         shoppingCartService.addProduct(cart, product);
-
         resp.sendRedirect(req.getContextPath() + "/products/all");
     }
 }

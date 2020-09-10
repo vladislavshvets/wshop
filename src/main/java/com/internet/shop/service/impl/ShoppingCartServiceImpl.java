@@ -41,7 +41,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public boolean delete(ShoppingCart shoppingCart) {
-        return shoppingCartDao.deleteById(shoppingCart.getId());
+    public boolean delete(Long id) {
+        return shoppingCartDao.deleteById(id);
     }
 }
