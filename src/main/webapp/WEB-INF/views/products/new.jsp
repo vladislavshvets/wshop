@@ -5,7 +5,6 @@
 </head>
 <body>
 <h1 style="color: red">${message}</h1>
-
 <form method="post" action="${pageContext.request.contextPath}/products/add">
     Product name<input type="text" name="name">
     Price<input type="text" name="price">

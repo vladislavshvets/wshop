@@ -21,17 +21,17 @@ public class AddProductController extends HttpServlet {
         double price = Double.parseDouble(req.getParameter("price"));
         if (name.length() == 0) {
             req.setAttribute("message", "Please fill all fields!");
-            req.getRequestDispatcher("/WEB-INF/views/products/newProduct.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/products/new.jsp").forward(req, resp);
         }
         Product product = new Product(name, price);
         productService.create(product);
         req.setAttribute("message", "Your product was created successfully! You can add new one!");
-        req.getRequestDispatcher("/WEB-INF/views/products/newProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/new.jsp").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/products/newProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/new.jsp").forward(req, resp);
     }
 }

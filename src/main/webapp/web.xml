@@ -13,12 +13,12 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>allUsers</servlet-name>
+        <servlet-name>all</servlet-name>
         <servlet-class>com.internet.shop.controllers.user.GetAllUsersController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>allUsers</servlet-name>
-        <url-pattern>/users/allUsers</url-pattern>
+        <servlet-name>all</servlet-name>
+        <url-pattern>/users/all</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>registration</servlet-name>
@@ -68,12 +68,10 @@
         <servlet-name>buyProduct</servlet-name>
         <url-pattern>/shopping-cart/products/add</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>cartProducts</servlet-name>
         <servlet-class>com.internet.shop.controllers.cart.GetShoppingCartControllers</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>cartProducts</servlet-name>
         <url-pattern>/shopping-cart/products</url-pattern>

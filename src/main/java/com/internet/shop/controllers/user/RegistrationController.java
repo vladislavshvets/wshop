@@ -30,7 +30,6 @@ public class RegistrationController extends HttpServlet {
             userService.create(user);
             shoppingCartService.create(new ShoppingCart(user.getUserId()));
             resp.sendRedirect(req.getContextPath() + "/");
-
         } else {
             req.setAttribute("message", "Please, add the correct login and password!");
             req.getRequestDispatcher("WEB-INF/views/users/registration.jsp").forward(req, resp);

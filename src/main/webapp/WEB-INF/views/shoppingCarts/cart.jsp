@@ -22,11 +22,9 @@
                 <c:out value="${product.price}"/>
             </td>
         </tr>
-
     </c:forEach>
 </table>
 <a href="${pageContext.request.contextPath}/">Back to main</a>
 <body>
-
 </body>
 </html>
