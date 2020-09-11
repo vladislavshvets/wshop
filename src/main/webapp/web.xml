@@ -34,7 +34,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>inject-data</servlet-name>
-        <url-pattern>/injectData</url-pattern>
+        <url-pattern>/inject-data</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>deleteUser</servlet-name>
