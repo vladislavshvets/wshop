@@ -28,7 +28,7 @@ public class RegistrationController extends HttpServlet {
         if (password.equals(repeatPassword)) {
             User user = new User(name, login, password);
             userService.create(user);
-            shoppingCartService.create(new ShoppingCart(user.getUserId()));
+            shoppingCartService.create(new ShoppingCart(user.getId()));
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("message", "Please, add the correct login and password!");

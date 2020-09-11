@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> getById(Long id) {
         return getAll().stream()
-                .filter(user -> user.getUserId().equals(id))
+                .filter(user -> user.getId().equals(id))
                 .findFirst();
     }
 
@@ -32,16 +32,16 @@ public class UserDaoImpl implements UserDao {
     public User update(User user) {
         List<User> users = getAll();
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUserId().equals(user.getUserId())) {
+            if (users.get(i).getId().equals(user.getId())) {
                 users.set(i, user);
             }
         }
-        throw new IllegalArgumentException("The user [" + user.getUserId()
+        throw new IllegalArgumentException("The user [" + user.getId()
                 + "] doesn't exist in storage!");
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return getAll().removeIf(user -> user.getUserId().equals(id));
+        return getAll().removeIf(user -> user.getId().equals(id));
     }
 }

@@ -20,7 +20,7 @@ public class Storage {
     private static Long shoppingCartId = 0L;
 
     public static void addUser(User user) {
-        user.setUserId(++userId);
+        user.setId(++userId);
         users.add(user);
     }
 
