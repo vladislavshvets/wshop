@@ -2,10 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All products</title>
+    <title> Administration view. All products: </title>
 </head>
 <body>
-<h1>List your products: </h1>
+<h1> Administration view. All products: </h1>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -24,12 +24,12 @@
             <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/shopping-cart/products/add?id=${product.id}">Buy</a>
+                <a href="${pageContext.request.contextPath}/products/delete?id=${product.id}">Delete</a>
             </td>
             </tr>
     </c:forEach>
 </table>
-<a href="${pageContext.request.contextPath}/products/add">Add product</a>
+<a href="${pageContext.request.contextPath}/products/add">Add new product</a>
 <a href="${pageContext.request.contextPath}/">Back to main</a>
 </body>
 </html>

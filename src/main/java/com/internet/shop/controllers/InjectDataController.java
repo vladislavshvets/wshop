@@ -24,8 +24,8 @@ public class InjectDataController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        userService.create(new User("user1", "user1", "1"));
-        userService.create(new User("user2", "user2", "2"));
+        userService.create(new User("Vlad", "user1", "1"));
+        userService.create(new User("Garry", "user2", "2"));
         shoppingCartService.create(new ShoppingCart(1L));
         shoppingCartService.create(new ShoppingCart(2L));
         productService.create(new Product("apple", 3));
