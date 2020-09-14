@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>addProduct</servlet-name>
-        <servlet-class>com.internet.shop.controllers.product.AddProductController</servlet-class>
+        <servlet-class>com.internet.shop.controllers.product.AddNewProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
@@ -54,11 +54,19 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>com.internet.shop.controllers.product.GetAllProductsController</servlet-class>
+        <servlet-class>com.internet.shop.controllers.product.GetAllProductsAdminController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allProducts</servlet-name>
         <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>allProductsUserView</servlet-name>
+        <servlet-class>com.internet.shop.controllers.product.GetAllProductsUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProductsUserView</servlet-name>
+        <url-pattern>/products/user-view-all-products</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>buyProduct</servlet-name>
@@ -66,14 +74,62 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>buyProduct</servlet-name>
-        <url-pattern>/shopping-cart/products/add</url-pattern>
+        <url-pattern>/shopping-carts/products/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>cartProducts</servlet-name>
+        <servlet-name>cart-products</servlet-name>
         <servlet-class>com.internet.shop.controllers.cart.GetShoppingCartControllers</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>cartProducts</servlet-name>
-        <url-pattern>/shopping-cart/products</url-pattern>
+        <servlet-name>cart-products</servlet-name>
+        <url-pattern>/shopping-carts/products</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>delete-product-from-cart</servlet-name>
+        <servlet-class>com.internet.shop.controllers.cart.DeleteProductFromCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete-product-from-cart</servlet-name>
+        <url-pattern>/products/delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>delete-product</servlet-name>
+        <servlet-class>com.internet.shop.controllers.product.DeleteProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete-product</servlet-name>
+        <url-pattern>/products/all</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>all-orders-admin</servlet-name>
+        <servlet-class>com.internet.shop.controllers.order.GetAllOrdersAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>all-orders-admin</servlet-name>
+        <url-pattern>/orders/admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>all-orders</servlet-name>
+        <servlet-class>com.internet.shop.controllers.order.GetAllUserOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>all-orders</servlet-name>
+        <url-pattern>/orders/by-user</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>completeOrder</servlet-name>
+        <servlet-class>com.internet.shop.controllers.order.CompleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>completeOrder</servlet-name>
+        <url-pattern>/order/complete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>com.internet.shop.controllers.order.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/order/delete</url-pattern>
     </servlet-mapping>
 </web-app>
