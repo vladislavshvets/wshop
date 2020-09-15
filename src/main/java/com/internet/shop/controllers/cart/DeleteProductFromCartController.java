@@ -6,7 +6,6 @@ import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.ProductService;
 import com.internet.shop.service.ShoppingCartService;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
