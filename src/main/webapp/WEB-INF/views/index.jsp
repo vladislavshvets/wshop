@@ -5,6 +5,7 @@
 <body>
 <h1>Welcome to web-shop!</h1>
 <a href="${pageContext.request.contextPath}/registration">Registration</a>
+<a href="${pageContext.request.contextPath}/login">Login</a>
 <a href="${pageContext.request.contextPath}/users/all">All users</a>
 <a href="${pageContext.request.contextPath}/products">For admin: All products</a>
 <a href="${pageContext.request.contextPath}/products/user-view-all-products">For user: all products</a>

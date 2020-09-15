@@ -14,4 +14,6 @@ public interface UserService {
     User update(User user);
 
     boolean delete(Long id);
+
+    Optional<User> findByLogin(String login);
 }
