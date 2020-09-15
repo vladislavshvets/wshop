@@ -3,6 +3,7 @@ package com.internet.shop.controllers.product;
 import com.internet.shop.lib.Injector;
 import com.internet.shop.model.Product;
 import com.internet.shop.service.ProductService;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AddNewProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    private ProductService productService =
+    private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
 
     @Override
