@@ -18,10 +18,11 @@ public class AuthenticationFilter implements Filter {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
-    private final Set<String> availableUrls = Set.of("/login", "/registration", "/inject-data");
+    private Set<String> availableUrls;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        availableUrls = Set.of("/login", "/registration", "/inject-data");
     }
 
     @Override

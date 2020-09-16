@@ -31,7 +31,8 @@ public class InjectDataController extends HttpServlet {
         userService.create(new User("Admin", "Admin", "1", Set.of(Role.of("ADMIN"))));
         shoppingCartService.create(new ShoppingCart(1L));
         shoppingCartService.create(new ShoppingCart(2L));
-        shoppingCartService.create(new ShoppingCart(3L));
+        Product product = new Product("apple", 3);
+        productService.create(product);
         productService.create(new Product("apple", 3));
         productService.create(new Product("banana", 5));
         productService.create(new Product("milk", 12));

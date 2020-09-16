@@ -16,8 +16,7 @@ public class DeleteProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String id = req.getParameter("id");
-        long productId = Long.parseLong(id);
+        Long productId = Long.parseLong(req.getParameter("id"));
         productService.deleteById(productId);
         resp.sendRedirect(req.getContextPath() + "/products/all");
     }

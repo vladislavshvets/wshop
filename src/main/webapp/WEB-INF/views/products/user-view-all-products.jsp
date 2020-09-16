@@ -8,12 +8,16 @@
 <h1>List your products: </h1>
 <table border="1">
     <tr>
+        <td>ID</td>
         <th>Product</th>
         <td>Price</td>
         <td>Options</td>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
+            <td>
+                <c:out value="${product.id}"/>
+            </td>
             <td>
                 <c:out value="${product.name}"/>
             </td>
