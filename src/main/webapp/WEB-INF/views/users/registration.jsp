@@ -7,9 +7,9 @@
 <h1> Hello! Please provide your user details! </h1>
 <h4 style="color:red">${message}</h4>
 <form method="post" action="${pageContext.request.contextPath}/registration">
-    Your name: <input type="text" name="name">
-    Login: <input type="text" name="login">
-    Password: <input type="password" name="pwd">
+    Your name: <input type="text" name="name"> <br>
+    Login: <input type="text" name="login"><br>
+    Password: <input type="password" name="pwd"><br>
     Repeat your password: <input type="password" name="pwd-repeat">
     <button type="submit">Submit!</button>
 </form>
