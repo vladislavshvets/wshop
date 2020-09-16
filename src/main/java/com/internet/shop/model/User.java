@@ -54,17 +54,17 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", name='" + name + '\''
-                + ", login='" + login + '\'' + '}';
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name='" + name + '\''
+                + ", login='" + login + '\'' + '}';
     }
 }
