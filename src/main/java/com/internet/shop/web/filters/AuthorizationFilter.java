@@ -29,7 +29,6 @@ public class AuthorizationFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         protectedUrls.put("/users/all", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/orders/by-user", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/orders/admin", List.of(Role.RoleName.ADMIN));
     }
 
