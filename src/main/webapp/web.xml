@@ -90,7 +90,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>delete-product-from-cart</servlet-name>
-        <url-pattern>/products/delete</url-pattern>
+        <url-pattern>/shopping-carts/products/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>delete-product</servlet-name>
@@ -98,7 +98,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>delete-product</servlet-name>
-        <url-pattern>/shopping-carts/products/delete</url-pattern>
+        <url-pattern>/products/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>all-orders-admin</servlet-name>

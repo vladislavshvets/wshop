@@ -28,7 +28,6 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         protectedUrls.put("/users/all", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/users/add", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/users/delete", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/add", List.of(Role.RoleName.ADMIN));
@@ -49,7 +48,7 @@ public class AuthorizationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String requestedUrl = req.getServletPath();
-        if (protectedUrls.get(requestedUrl) == null) {
+        if (!protectedUrls.containsKey(requestedUrl)) {
             chain.doFilter(req, resp);
             return;
         }
