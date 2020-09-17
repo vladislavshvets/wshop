@@ -14,9 +14,10 @@
         <td>Options</td>
     </tr>
     <c:forEach var="product" items="${products}">
-        <tr><td>
+        <tr>
+            <td>
             <c:out value="${product.id}"/>
-        </td>
+            </td>
             <td>
             <c:out value="${product.name}"/>
             </td>

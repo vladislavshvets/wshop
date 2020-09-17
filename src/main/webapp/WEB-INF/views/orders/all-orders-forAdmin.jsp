@@ -5,7 +5,7 @@
     <title>All orders</title>
 </head>
 <body>
-<h1>All orders</h1>
+<h1>All user's orders</h1>
 <table border="1">
     <tr>
         <th>Order ID</th>

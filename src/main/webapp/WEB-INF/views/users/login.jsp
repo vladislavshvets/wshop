@@ -11,6 +11,7 @@
     Password: <input type="password" name="pwd">
     <button type="submit">Login</button>
 </form>
+<a href="${pageContext.request.contextPath}/inject-data">Inject data</a>
 <a href="${pageContext.request.contextPath}/registration">Registration</a>
 <a href="${pageContext.request.contextPath}/">Back to main</a>
 </body>

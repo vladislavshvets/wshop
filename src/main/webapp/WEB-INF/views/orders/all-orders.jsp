@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Admin: All user's orders </title>
+    <title>All your's orders </title>
 </head>
 <body>
 <h1>All user's orders</h1>

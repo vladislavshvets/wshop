@@ -45,11 +45,11 @@
         <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>addProduct</servlet-name>
+        <servlet-name>Add new product to list</servlet-name>
         <servlet-class>com.internet.shop.controllers.product.AddNewProductController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addProduct</servlet-name>
+        <servlet-name>Add new product to list</servlet-name>
         <url-pattern>/products/add</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -69,11 +69,11 @@
         <url-pattern>/products/user-view-all-products</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>buyProduct</servlet-name>
+        <servlet-name>Add to shopping cart</servlet-name>
         <servlet-class>com.internet.shop.controllers.product.AddToShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>buyProduct</servlet-name>
+        <servlet-name>Add to shopping cart</servlet-name>
         <url-pattern>/shopping-carts/products/add</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -90,7 +90,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>delete-product-from-cart</servlet-name>
-        <url-pattern>/products/delete</url-pattern>
+        <url-pattern>/shopping-carts/products/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>delete-product</servlet-name>
@@ -98,7 +98,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>delete-product</servlet-name>
-        <url-pattern>/products/all</url-pattern>
+        <url-pattern>/products/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>all-orders-admin</servlet-name>
@@ -148,4 +148,20 @@
         <filter-name>authenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>authorizationFilter</filter-name>
+        <filter-class>com.internet.shop.web.filters.AuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authorizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.internet.shop.controllers.user.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
 </web-app>
