@@ -23,7 +23,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement =
                     connection.prepareStatement(query,
-                    Statement.RETURN_GENERATED_KEYS);
+                            Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
             statement.setBigDecimal(2, product.getPrice());
             statement.executeUpdate();
@@ -40,20 +40,19 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> getById(Long id) {
+        Product product = null;
         String query = "SELECT name, price FROM products WHERE id = ? AND deleted = FALSE;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String name = resultSet.getString("name");
-                double price = resultSet.getDouble("price");
-                return Optional.of(new Product(name, price));
+            while (resultSet.next()) {
+                product = getProductFromResSet(resultSet);
             }
-            return Optional.empty();
         } catch (SQLException e) {
             throw new DataProcessingException("Getting product by id " + id + " failed", e);
         }
+        return Optional.ofNullable(product);
     }
 
     @Override
@@ -79,8 +78,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            statement.executeUpdate();
-            return true;
+            return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             throw new DataProcessingException("Deleted of product with id=" + id + " is failed", e);
         }
@@ -103,5 +101,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Failed, list products not found", e);
         }
+    }
+
+    private Product getProductFromResSet(ResultSet resultSet) throws SQLException {
+        long id = resultSet.getLong("id");
+        String name = resultSet.getString("name");
+        double price = resultSet.getDouble("price");
+        return new Product(name, price);
     }
 }
