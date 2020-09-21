@@ -92,15 +92,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                long id = resultSet.getLong("id");
-                String name = resultSet.getString("name");
-                double price = resultSet.getDouble("price");
-                products.add(new Product(name, price));
+                Product product = getProductFromResSet(resultSet);
+                products.add(product);
             }
-            return products;
         } catch (SQLException e) {
             throw new DataProcessingException("Failed, list products not found", e);
         }
+        return products;
     }
 
     private Product getProductFromResSet(ResultSet resultSet) throws SQLException {
