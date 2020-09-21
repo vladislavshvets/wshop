@@ -13,4 +13,3 @@ VALUES ('cherry', '33,5'),
         ('Gold_apple','20,57'),
         ('Melon', '6,29');
 
-DROP DATA web_shop;
