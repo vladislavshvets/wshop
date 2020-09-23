@@ -3,15 +3,8 @@ package com.internet.shop;
 import com.internet.shop.dao.ProductDao;
 import com.internet.shop.dao.UserDao;
 import com.internet.shop.lib.Injector;
-import com.internet.shop.model.Product;
 import com.internet.shop.model.Role;
-import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
-import com.internet.shop.service.OrderService;
-import com.internet.shop.service.ProductService;
-import com.internet.shop.service.ShoppingCartService;
-import com.internet.shop.service.UserService;
-
 import java.util.Set;
 
 public class AppMain {

@@ -126,7 +126,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-
     @Override
     public List<ShoppingCart> getAll() {
         List<ShoppingCart> allCarts = new ArrayList<>();
@@ -165,7 +164,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             return cartProducts;
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't get products from DB, cartId: "+ cartId, e);
+            throw new DataProcessingException(
+                    "Couldn't get products from DB, cartId: " + cartId, e);
         }
     }
 

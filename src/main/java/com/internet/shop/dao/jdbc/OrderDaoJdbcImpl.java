@@ -6,8 +6,11 @@ import com.internet.shop.lib.Dao;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
 import com.internet.shop.util.ConnectionUtil;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,16 +33,17 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setProducts(getProductListByOrderId(order.getId()));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't find orders by userId: " + userId, e);
+            throw new DataProcessingException(
+                    "Couldn't find orders by userId: " + userId, e);
         }
         return userOrders;
     }
 
     private List<Product> getProductListByOrderId(Long orderId) throws SQLException {
         List<Product> orderProducts = new ArrayList<>();
-        String query = "SELECT product_id, product_name,price FROM products " +
-                "JOIN orders_products USING (product_id) " +
-                "WHERE order_id = ?";
+        String query = "SELECT product_id, product_name,price FROM products "
+                + "JOIN orders_products USING (product_id) "
+                + "WHERE order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
@@ -54,7 +58,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return orderProducts;
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't get products from DB, orderId: " + orderId, e);
+            throw new DataProcessingException(
+                    "Couldn't get products from DB, orderId: " + orderId, e);
         }
     }
 
