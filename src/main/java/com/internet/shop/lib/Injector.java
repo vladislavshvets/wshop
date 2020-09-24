@@ -51,7 +51,6 @@ public class Injector {
                         + clazz.getName() + " hasn't annotation Inject");
             }
         }
-
         return newInstanceOfClass;
     }
 

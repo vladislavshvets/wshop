@@ -34,12 +34,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                     "Couldn't find orders by userId: " + userId, e);
         }
         for (Order order : userOrders) {
-            try {
-                order.setProducts(getProductListByOrderId(order.getId()));
-            } catch (SQLException e) {
-                throw new DataProcessingException(""
-                        + "Couldn't get product list by orderId: " + order.getId(), e);
-            }
+            order.setProducts(getProductListByOrderId(order.getId()));
         }
         return userOrders;
     }
@@ -67,8 +62,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Optional<Order> getById(Long orderId) {
         String query = "SELECT * FROM orders WHERE order_id = ? AND deleted = FALSE ";
+        List<Product> productsInOrder = getProductListByOrderId(orderId);
         try (Connection connection = ConnectionUtil.getConnection()) {
-            List<Product> productsInOrder = getProductListByOrderId(orderId);
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
@@ -119,12 +114,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             throw new DataProcessingException("Couldn't get orders from DataBase", e);
         }
         for (Order order : allOrders) {
-            try {
-                order.setProducts(getProductListByOrderId(order.getId()));
-            } catch (SQLException e) {
-                throw new DataProcessingException(
-                        "Couldn't get product list by OrderId: " + order.getId(), e);
-            }
+            order.setProducts(getProductListByOrderId(order.getId()));
         }
         return allOrders;
     }
@@ -141,7 +131,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private List<Product> getProductListByOrderId(Long orderId) throws SQLException {
+    private List<Product> getProductListByOrderId(Long orderId) {
         List<Product> orderProducts = new ArrayList<>();
         String query = "SELECT * FROM products "
                 + "JOIN orders_products USING (product_id) "
