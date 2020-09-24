@@ -40,20 +40,20 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     }
 
     @Override
-    public ShoppingCart create(ShoppingCart cart) {
+    public ShoppingCart create(ShoppingCart cartId) {
         String query = "INSERT INTO shopping_carts (user_id) VALUES (?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setLong(1, cart.getUserId());
+            statement.setLong(1, cartId.getUserId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                cart.setId(resultSet.getLong(1));
+                cartId.setId(resultSet.getLong(1));
             }
-            return cart;
+            return cartId;
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't create provided cart: " + cart, e);
+            throw new DataProcessingException("Couldn't create provided cartId: " + cartId, e);
         }
     }
 
@@ -78,10 +78,10 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     }
 
     @Override
-    public ShoppingCart update(ShoppingCart cart) {
-        deleteProducts(cart.getId());
-        addProducts(cart.getProducts(), cart.getId());
-        return cart;
+    public ShoppingCart update(ShoppingCart cartId) {
+        deleteProducts(cartId.getId());
+        addProducts(cartId.getProducts(), cartId.getId());
+        return cartId;
     }
 
     private void addProducts(List<Product> products, Long cartId) {

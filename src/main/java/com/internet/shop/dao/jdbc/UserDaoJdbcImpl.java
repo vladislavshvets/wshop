@@ -137,7 +137,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setLong(1, userId);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't delete product by  id: "
+            throw new DataProcessingException("Couldn't delete user by  id: "
                     + userId, e);
         }
     }

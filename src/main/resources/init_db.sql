@@ -11,8 +11,6 @@ CREATE TABLE `internet_shop`.`roles` (
                                          `deleted` TINYINT(1) NOT NULL DEFAULT 0,
                                          PRIMARY KEY (`role_id`),
                                          UNIQUE INDEX `role_name_UNIQUE` (`role_name` ASC) VISIBLE);
-INSERT INTO `internet_shop`.`roles` (`role_name`) VALUES ('ADMIN');
-INSERT INTO `internet_shop`.`roles` (`role_name`) VALUES ('USER');
 CREATE TABLE `internet_shop`.`users` (
                                          `user_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
                                          `user_name` VARCHAR(225) NOT NULL,
@@ -88,3 +86,5 @@ CREATE TABLE `internet_shop`.`orders_products` (
                                                            REFERENCES `internet_shop`.`products` (`product_id`)
                                                            ON DELETE NO ACTION
                                                            ON UPDATE NO ACTION);
+INSERT INTO `internet_shop`.`roles` (`role_name`) VALUES ('ADMIN');
+INSERT INTO `internet_shop`.`roles` (`role_name`) VALUES ('USER');

@@ -19,7 +19,7 @@ import java.util.Optional;
 public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getUserOrders(Long userId) {
-        String query = "SELECT * FROM orders WHERE user_id = ? AND deleted = FALSE";
+        String query = "SELECT * FROM orders WHERE user_id = ? AND deleted = FALSE ";
         List<Order> userOrders = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -29,51 +29,24 @@ public class OrderDaoJdbcImpl implements OrderDao {
                     userOrders.add(getOrderFromResultSet(resultSet));
                 }
             }
-            for (Order order : userOrders) {
-                order.setProducts(getProductListByOrderId(order.getId()));
-            }
         } catch (SQLException e) {
             throw new DataProcessingException(
                     "Couldn't find orders by userId: " + userId, e);
         }
-        return userOrders;
-    }
-
-    private List<Product> getProductListByOrderId(Long orderId) throws SQLException {
-        List<Product> orderProducts = new ArrayList<>();
-        String query = "SELECT product_id, product_name,price FROM products "
-                + "JOIN orders_products USING (product_id) "
-                + "WHERE order_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, orderId);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                long id = resultSet.getLong("product_id");
-                String productName = resultSet.getString("product_name");
-                double price = resultSet.getDouble("price");
-                Product product = new Product(productName, price);
-                product.setId(id);
-                orderProducts.add(product);
+        for (Order order : userOrders) {
+            try {
+                order.setProducts(getProductListByOrderId(order.getId()));
+            } catch (SQLException e) {
+                throw new DataProcessingException(""
+                        + "Couldn't get product list by orderId: " + order.getId(), e);
             }
-            return orderProducts;
-        } catch (SQLException e) {
-            throw new DataProcessingException(
-                    "Couldn't get products from DB, orderId: " + orderId, e);
         }
-    }
-
-    private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
-        Long cartId = resultSet.getLong("order_id");
-        Long userId = resultSet.getLong("user_id");
-        Order order = new Order(userId);
-        order.setId(cartId);
-        return order;
+        return userOrders;
     }
 
     @Override
     public Order create(Order order) {
-        String query = "INSERT INTO orders (user_id) VALUES (?)";
+        String query = "INSERT INTO orders (user_id) VALUES (?) ";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -84,30 +57,16 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setId(resultSet.getLong(1));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't create provided order: " + order, e);
+            throw new DataProcessingException(""
+                    + "Couldn't create provided orderId: " + order.getId(), e);
         }
         addProducts(order.getProducts(), order.getId());
         return order;
     }
 
-    private void addProducts(List<Product> products, Long orderId) {
-        String query = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            for (Product product : products) {
-                statement.setLong(1, orderId);
-                statement.setLong(2, product.getId());
-                statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't add products by specified orderID: "
-                    + orderId, e);
-        }
-    }
-
     @Override
     public Optional<Order> getById(Long orderId) {
-        String query = "SELECT * FROM orders WHERE order_id = ? AND deleted = FALSE";
+        String query = "SELECT * FROM orders WHERE order_id = ? AND deleted = FALSE ";
         try (Connection connection = ConnectionUtil.getConnection()) {
             List<Product> productsInOrder = getProductListByOrderId(orderId);
             PreparedStatement statement = connection.prepareStatement(query);
@@ -134,7 +93,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public boolean deleteById(Long orderId) {
-        String query = "UPDATE orders SET deleted = TRUE WHERE order_id = ? AND deleted = FALSE";
+        String query = "UPDATE orders SET deleted = TRUE WHERE order_id = ? AND deleted = FALSE ";
         deleteProducts(orderId);
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -146,8 +105,32 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
+    @Override
+    public List<Order> getAll() {
+        List<Order> allOrders = new ArrayList<>();
+        String query = "SELECT * FROM orders WHERE deleted = FALSE ";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                allOrders.add(getOrderFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DataProcessingException("Couldn't get orders from DataBase", e);
+        }
+        for (Order order : allOrders) {
+            try {
+                order.setProducts(getProductListByOrderId(order.getId()));
+            } catch (SQLException e) {
+                throw new DataProcessingException(
+                        "Couldn't get product list by OrderId: " + order.getId(), e);
+            }
+        }
+        return allOrders;
+    }
+
     private void deleteProducts(Long orderId) {
-        String query = "DELETE FROM orders_products WHERE order_id = ?";
+        String query = "DELETE FROM orders_products WHERE order_id = ? ";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
@@ -158,22 +141,50 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    @Override
-    public List<Order> getAll() {
-        List<Order> allOrders = new ArrayList<>();
-        String query = "SELECT * FROM orders WHERE deleted = FALSE";
+    private List<Product> getProductListByOrderId(Long orderId) throws SQLException {
+        List<Product> orderProducts = new ArrayList<>();
+        String query = "SELECT * FROM products "
+                + "JOIN orders_products USING (product_id) "
+                + "WHERE order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                allOrders.add(getOrderFromResultSet(resultSet));
+                long id = resultSet.getLong("product_id");
+                String productName = resultSet.getString("product_name");
+                double price = resultSet.getDouble("price");
+                Product product = new Product(productName, price);
+                product.setId(id);
+                orderProducts.add(product);
             }
-            for (Order order : allOrders) {
-                order.setProducts(getProductListByOrderId(order.getId()));
+            return orderProducts;
+        } catch (SQLException e) {
+            throw new DataProcessingException(
+                    "Couldn't get products from DB, orderId: " + orderId, e);
+        }
+    }
+
+    private void addProducts(List<Product> products, Long orderId) {
+        String query = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            for (Product product : products) {
+                statement.setLong(1, orderId);
+                statement.setLong(2, product.getId());
+                statement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Couldn't get orders from DataBase", e);
+            throw new DataProcessingException("Couldn't add products by specified orderID: "
+                    + orderId, e);
         }
-        return allOrders;
+    }
+
+    private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
+        Long orderId = resultSet.getLong("order_id");
+        Long userId = resultSet.getLong("user_id");
+        Order order = new Order(userId);
+        order.setId(orderId);
+        return order;
     }
 }
