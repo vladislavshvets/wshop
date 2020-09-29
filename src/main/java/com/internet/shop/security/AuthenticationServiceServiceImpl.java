@@ -18,10 +18,13 @@ public class AuthenticationServiceServiceImpl implements AuthenticationService {
             throws AuthenticationException {
         Optional<User> userFromDB = userService.findByLogin(login);
         if (userFromDB.isPresent()
-                && (userFromDB.get().getPassword()
-                .equals(HashUtil.hashPassword(password, userFromDB.get().getSalt())))) {
+                && passwordIsValid(userFromDB.get(), password)) {
             return userFromDB.get();
         }
         throw new AuthenticationException("Incorrect login or password!");
+    }
+
+    private boolean passwordIsValid(User user, String password) {
+        return HashUtil.hashPassword(password, user.getSalt()).equals(user.getPassword());
     }
 }

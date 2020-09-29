@@ -27,6 +27,9 @@ public class User {
     public User(String user) {
     }
 
+    public User(String name, String login, String password, byte[] salt) {
+    }
+
     public byte[] getSalt() {
         return salt;
     }
