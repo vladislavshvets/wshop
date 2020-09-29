@@ -78,10 +78,10 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     }
 
     @Override
-    public ShoppingCart update(ShoppingCart cartId) {
-        deleteProducts(cartId.getId());
-        addProducts(cartId.getProducts(), cartId.getId());
-        return cartId;
+    public ShoppingCart update(ShoppingCart cart) {
+        deleteProducts(cart.getId());
+        addProducts(cart.getProducts(), cart.getId());
+        return cart;
     }
 
     @Override

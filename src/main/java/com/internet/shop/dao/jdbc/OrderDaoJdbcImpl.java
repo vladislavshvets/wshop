@@ -52,8 +52,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setId(resultSet.getLong(1));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException(""
-                    + "Couldn't create provided orderId: " + order.getId(), e);
+            throw new DataProcessingException(
+                    "Couldn't create provided orderId: " + order.getId(), e);
         }
         addProducts(order.getProducts(), order.getId());
         return order;
