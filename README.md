@@ -1,9 +1,9 @@
-##Internet Shop pet-project
+# Internet Shop pet-project
 
 *For practice back-end skills. This project is designed according to the SOLID principles n-tier architecture 
 and consist of the next layers: Dao, Service, and Web controllers.*
 
-##General description
+## General description
 - Authentication and authorization users and hashing SHA-512 passwords
  and adding salt.
 - CRUD operation with models: user, product, shoppingCart, order.
