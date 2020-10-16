@@ -17,11 +17,12 @@ CREATE TABLE `internet_shop`.`users`
 (
     `user_id`   BIGINT(11)   NOT NULL AUTO_INCREMENT,
     `user_name` VARCHAR(225) NOT NULL,
-    `login`     VARCHAR(225) NOT NULL,
+    `user_login`    VARCHAR(225) NOT NULL,
     `password`  VARCHAR(225) NOT NULL,
     `deleted`   TINYINT(1)   NOT NULL DEFAULT 0,
+    `user_salt` VARBINARY(512) NOT NULL,
     PRIMARY KEY (`user_id`),
-    UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE
+    UNIQUE INDEX `login_UNIQUE` (`user_login` ASC) VISIBLE
 );
 CREATE TABLE `internet_shop`.`shopping_carts_products`
 (
