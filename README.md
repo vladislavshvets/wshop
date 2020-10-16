@@ -1,4 +1,4 @@
-#Internet Shop pet-project
+##Internet Shop pet-project
 
 *For practice back-end skills. This project is designed according to the SOLID principles n-tier architecture 
 and consist of the next layers: Dao, Service, and Web controllers.*
@@ -8,14 +8,14 @@ and consist of the next layers: Dao, Service, and Web controllers.*
  and adding salt.
 - CRUD operation with models: user, product, shoppingCart, order.
 - Web views by Role-based access control, in this project we have Admin and User role.
-##### ***ADMIN:***
+##### ADMIN:
 Can view all orders and shopping carts;
 + Can add / delete products from the database;
 + Can create / delete orders; 
 + Can create / delete shopping cart;
 + Can delete users;
 + Have all functional of USER
-##### ***USER:***
+##### USER:
 + Can add a product to the shopping cart;
 + Can place an order;
 + Can view their orders.  
