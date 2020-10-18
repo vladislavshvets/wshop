@@ -1,4 +1,4 @@
-# Internet Shop pet-project
+# Internet Shop project
 
 *For practice back-end skills. This project is designed according to the SOLID principles n-tier architecture 
 and consist of the next layers: Dao, Service, and Web controllers.*
