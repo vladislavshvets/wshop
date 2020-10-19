@@ -31,7 +31,7 @@ Can view all orders and shopping carts;
 + MySQL
 + OOP, SOLID, RBAC principles.  
 
-## Guide how to start working with this project)
+## Guide how to start working with this project:
 - Download and install the JDK
 - Download and install servlet container (I recommend you to chose TomCat)
 - Download and install MySQL Server and MySQL Workbench
