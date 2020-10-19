@@ -31,7 +31,7 @@ Can view all orders and shopping carts;
 + MySQL
 + OOP, SOLID, RBAC principles.  
 
-For developers (guide how to start working with this project)
+## Gguide how to start working with this project)
 Download and install the JDK
 Download and install servlet container (I recommend you to chose TomCat)
 Download and install MySQL Server and MySQL Workbench
@@ -41,5 +41,6 @@ password: "1234"
 url: jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC
 Create a schema with name "internet_shop"
 Copy SQL script from init_db.sql in src/main/resources/ folder and run it in MySQL Workbench
-You can't register as admin, so you need to create admin in MySQL Workbench and then you can use this login and pass while logging in to get admin access.
+You can't register as admin, so you need to create admin in MySQL Workbench and then you can use this login and pass while logging in
+to get admin access.
 After that you can run this app and use button "inject data" orr log in as admin and add your own data.
